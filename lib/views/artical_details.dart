@@ -12,14 +12,14 @@ class ArticalDetailes extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(article.author),
+        title: Text(article.author ?? ""),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(
           children: [
             Text(
-              article.title,
+              article.title ?? "",
               style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
               textDirection: TextDirection.rtl,
             ),
@@ -28,19 +28,20 @@ class ArticalDetailes extends StatelessWidget {
               imageUrl: article.imageUrl != null
                   ? article.imageUrl.isNotEmpty
                       ? article.imageUrl
-                      : null
+                      : "https://images.unsplash.com/32/Mc8kW4x9Q3aRR3RkP5Im_IMG_4417.jpg?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmFja2dyb3VuZHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
                   : "https://images.unsplash.com/32/Mc8kW4x9Q3aRR3RkP5Im_IMG_4417.jpg?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmFja2dyb3VuZHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
               placeholder: (context, url) => CircularProgressIndicator(),
               errorWidget: (context, url, error) => Icon(Icons.error),
               fit: BoxFit.cover,
             ),
             Text(
-              article.description,
+              article.description ?? "",
               textDirection: TextDirection.rtl,
               style: TextStyle(fontSize: 18),
             ),
             ElevatedButton(
                 onPressed: () {
+                  //  canLaunch(article.articleUrl);
                   launch(article.articleUrl);
                 },
                 child: Text("رابط الخبر"))
